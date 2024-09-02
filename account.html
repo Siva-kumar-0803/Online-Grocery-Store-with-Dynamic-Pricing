@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Account</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<div class="sticky-top">
+    <header id="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid mx-5">
+                <a class="navbar-brand" href="#">
+                    Grocery Store
+                </a>
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">My Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Whitelist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Checkout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Apply the class bg-light-transparent for transparency -->
+    <header class="d-flex py-3 justify-content-center bg-light-transparent">
+        <ul class="nav nav-pills">
+            <li class="nav-item me-4"><a href="#" class="nav-link" aria-current="page">Home</a></li>
+            <li class="nav-item me-4"><a href="#" class="nav-link">Blogs</a></li>
+            <li class="nav-item me-4"><a href="#" class="nav-link">Contact</a></li>
+            <li class="nav-item me-4"><a href="#" class="nav-link">About</a></li>
+        </ul>
+    </header>
+
+    <!-- Apply the class search-bar for transparency -->
+    <div class="row justify-content-center search-bar">
+        <div class="col-md-4 col-sm-6 pb-3">
+            <form class="d-flex">
+                <input class="form-control me-4 mx-4 " style="width: 250px;" type="search" placeholder="Search Product"
+                    aria-label="Search">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4 mx-5 p-5">
+    <!-- Personal Information Section -->
+    <div class="section-header mt-4">
+        <h5>Personal Information</h5>
+        <button class="btn btn-link edit-link">Edit</button>
+    </div>
+    <form id="personalInfoForm">
+        <div class="row mb-3 mt-3">
+            <div class="col">
+                <input type="text" class="form-control" id="firstName" value="Mohamad Shalik" disabled>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" id="lastName" value="Irshath" disabled>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Your Gender</label>
+            <div>
+                <input type="radio" id="male" name="gender" value="Male" disabled checked>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female" disabled>
+                <label for="female">Female</label>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success save-btn d-none">Save</button>
+    </form>
+
+    <!-- Email Address Section -->
+    <div class="section-header mt-4">
+        <h5>Email Address</h5>
+        <button class="btn btn-link edit-link">Edit</button>
+    </div>
+    <form id="emailForm" class="mb-3 mt-3">
+        <input type="email" class="form-control" id="email" value="crshalik07@gmail.com" disabled>
+        <button type="button" class="btn btn-success save-btn d-none">Save</button>
+    </form>
+
+    <!-- Mobile Number Section -->
+    <div class="section-header mt-4">
+        <h5>Mobile Number</h5>
+        <button class="btn btn-link edit-link">Edit</button>
+    </div>
+    <form id="mobileForm">
+        <input type="text" class="form-control mt-3" id="mobileNumber" value="+916383201884" disabled>
+        <button type="button" class="btn btn-success save-btn d-none">Save</button>
+    </form>
+
+    <!-- Manage Address Section -->
+    <div class="section-header mt-4">
+        <h5>Manage Address</h5>
+    </div>
+    <button id="addAddressBtn" class="btn btn-outline-secondary mb-3">+ Add Address</button>
+
+    <div id="addressContainer">
+        <!-- Existing Address Example -->
+        <div class="address-box">
+            <button class="btn edit-address-btn">Edit</button>
+            <button class="btn delete-address-btn">Delete</button>
+            <h6>Home</h6>
+            <p>Account User Name: 9865647689<br>
+                room no.70, Sport hostel, Bharathiar University, Coimbatore.<br>
+                Tamil Nadu - 641 046.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and Dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+crossorigin="anonymous"></script>
+
+<!-- JavaScript to Add, Edit, Delete, and Save Address Details -->
+<script>
+    // Function to toggle edit mode
+    function toggleEditMode(form, isEdit) {
+        const inputs = form.querySelectorAll('input, textarea');
+        const saveButton = form.querySelector('.save-btn');
+        inputs.forEach(input => input.disabled = !isEdit);
+        saveButton.classList.toggle('d-none', !isEdit);
+    }
+
+    // Add event listeners for edit buttons
+    document.querySelectorAll('.edit-link').forEach((button, index) => {
+        button.addEventListener('click', function () {
+            const forms = [document.getElementById('personalInfoForm'), document.getElementById('emailForm'), document.getElementById('mobileForm')];
+            toggleEditMode(forms[index], true);
+        });
+    });
+
+    // Add event listeners for save buttons
+    document.querySelectorAll('.save-btn').forEach((button, index) => {
+        button.addEventListener('click', function () {
+            const forms = [document.getElementById('personalInfoForm'), document.getElementById('emailForm'), document.getElementById('mobileForm')];
+            toggleEditMode(forms[index], false);
+            alert('Changes saved successfully!');
+        });
+    });
+
+    // JavaScript to add address form and save details
+    document.getElementById('addAddressBtn').addEventListener('click', function () {
+        var addressForm = document.createElement('div');
+        addressForm.className = 'address-box mb-3';
+
+        addressForm.innerHTML = `
+            <form class="address-form">
+                <div class="mb-3">
+                    <input type="text" class="form-control address-title" placeholder="Address Title (e.g., Home, Office)">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control address-username" placeholder="Account User Name">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control address-phone" placeholder="Phone Number">
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control address-details" rows="3" placeholder="Address Details"></textarea>
+                </div>
+                <button type="button" class="btn btn-success save-btn">Save</button>
+            </form>
+        `;
+
+        document.getElementById('addressContainer').appendChild(addressForm);
+
+        addressForm.querySelector('.save-btn').addEventListener('click', function () {
+            var title = addressForm.querySelector('.address-title').value;
+            var username = addressForm.querySelector('.address-username').value;
+            var phone = addressForm.querySelector('.address-phone').value;
+            var details = addressForm.querySelector('.address-details').value;
+
+            var savedAddress = document.createElement('div');
+            savedAddress.className = 'address-box';
+            savedAddress.innerHTML = `
+                <button class="btn edit-address-btn">Edit</button>
+                <button class="btn delete-address-btn">Delete</button>
+                <h6>${title}</h6>
+                <p>Account User Name: ${username}<br>
+                Phone Number: ${phone}<br>
+                ${details}
+                </p>
+            `;
+
+            document.getElementById('addressContainer').appendChild(savedAddress);
+            addressForm.remove();
+        });
+    });
+
+    // Function to handle address edit
+    function handleAddressEdit(button) {
+        const addressBox = button.parentElement;
+        const title = addressBox.querySelector('h6').textContent;
+        const [username, phone, ...details] = addressBox.querySelector('p').innerHTML.split('<br>').map(e => e.trim());
+
+        var editForm = document.createElement('div');
+        editForm.className = 'address-box mb-3';
+        editForm.innerHTML = `
+            <form class="address-form">
+                <div class="mb-3">
+                    <input type="text" class="form-control address-title" value="${title}">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control address-username" value="${username.split(':')[1].trim()}">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control address-phone" value="${phone.split(':')[1].trim()}">
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control address-details" rows="3">${details.join('<br>')}</textarea>
+                </div>
+                <button type="button" class="btn btn-success save-btn">Save</button>
+            </form>
+        `;
+
+        addressBox.replaceWith(editForm);
+
+        editForm.querySelector('.save-btn').addEventListener('click', function () {
+            var title = editForm.querySelector('.address-title').value;
+            var username = editForm.querySelector('.address-username').value;
+            var phone = editForm.querySelector('.address-phone').value;
+            var details = editForm.querySelector('.address-details').value;
+
+            var updatedAddress = document.createElement('div');
+            updatedAddress.className = 'address-box';
+            updatedAddress.innerHTML = `
+                <button class="btn edit-address-btn">Edit</button>
+                <button class="btn delete-address-btn">Delete</button>
+                <h6>${title}</h6>
+                <p>Account User Name: ${username}<br>
+                Phone Number: ${phone}<br>
+                ${details}
+                </p>
+            `;
+
+            document.getElementById('addressContainer').appendChild(updatedAddress);
+            editForm.remove();
+        });
+    }
+
+    // Add event listener for address edit and delete buttons
+    document.getElementById('addressContainer').addEventListener('click', function(event) {
+        if (event.target.classList.contains('edit-address-btn')) {
+            handleAddressEdit(event.target);
+        } else if (event.target.classList.contains('delete-address-btn')) {
+            event.target.parentElement.remove();
+        }
+    });
+</script>
+
+<footer class="bd-footer py-5 py-md-5 mt-5 bg-body-tertiary" style="background: #D9D9D9">
+    <div class="row mx-5 ms-5">
+        <!-- Company Info Column -->
+        <div class="col-lg-3 mb-3">
+            <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="/" aria-label="Bootstrap">
+                <span class="fs-2 fw-bolder mt-5">Grocery Store</span>
+            </a>
+        </div>
+        <!-- Information Column -->
+        <div class="col-6 col-lg-2 mb-3 custom-links">
+            <h5 class="fw-bold">Information</h5>
+            <ul class="list-unstyled py-3">
+                <li class="mb-2"><a href="#">About</a></li>
+                <li class="mb-2"><a href="#">Delivery Information</a></li>
+                <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                <li class="mb-2"><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+        <!-- My Account Column -->
+        <div class="col-6 col-lg-2 mb-3 custom-links">
+            <h5 class="fw-bold">My Account</h5>
+            <ul class="list-unstyled py-3">
+                <li class="mb-2"><a href="#">My Account</a></li>
+                <li class="mb-2"><a href="#">Wishlist</a></li>
+                <li class="mb-2"><a href="#">Shopping Cart</a></li>
+                <li class="mb-2"><a href="#">Newsletter</a></li>
+            </ul>
+        </div>
+        <!-- Customer Services Column -->
+        <div class="col-6 col-lg-2 mb-3 custom-links">
+            <h5 class="fw-bold">Customer Services</h5>
+            <ul class="list-unstyled py-3">
+                <li class="mb-2"><a href="#">Contact</a></li>
+                <li class="mb-2"><a href="#">Customer Services</a></li>
+                <li class="mb-2"><a href="#">Returns</a></li>
+                <li class="mb-2"><a href="#">Site Map</a></li>
+            </ul>
+        </div>
+        <!-- Extras Column -->
+        <div class="col-6 col-lg-2 mb-3 custom-links">
+            <h5 class="fw-bold">Extras</h5>
+            <ul class="list-unstyled py-3">
+                <li class="mb-2"><a href="#">Brands</a></li>
+                <li class="mb-2"><a href="#">Gift Vouchers</a></li>
+                <li class="mb-2"><a href="#">Affiliates</a></li>
+                <li class="mb-2"><a href="#">Specials</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+crossorigin="anonymous"></script>
+
+</body>
+</html>
