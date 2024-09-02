@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <style>
+            .cart-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px; /* Space between cart and summary */
+        }
+        .cart-items {
+            flex: 3; /* Width of cart items section */
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        .cart-summary {
+            flex: 1; /* Width of summary section */
+            padding-left: 20px;
+            border-left: 1px solid #ddd;
+        }
+        .cart-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .btn-outline-secondary {
+            padding: 0 10px;
+        }
+        .delete-btn {
+            background-color: #dc3545; /* Bootstrap danger color */
+            color: white;
+            border: none;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .checkout-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            width: 100%;
+        }
+        </style>
+    </head>
+
+<div class="sticky-top">
+    <header id="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid mx-5">
+                <a class="navbar-brand" href="#">
+                    Grocery Store
+                </a>
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">My Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Whitelist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Checkout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Apply the class bg-light-transparent for transparency -->
+    <header class="d-flex py-3 justify-content-center bg-light-transparent">
+        <ul class="nav nav-pills">
+            <li class="nav-item me-4"><a href="#" class="nav-link" aria-current="page">Home</a></li>
+            <li class="nav-item me-4"><a href="#" class="nav-link">Blogs</a></li>
+            <li class="nav-item me-4"><a href="#" class="nav-link">Contact</a></li>
+            <li class="nav-item me-4"><a href="#" class="nav-link">About</a></li>
+        </ul>
+    </header>
+
+    <!-- Apply the class search-bar for transparency -->
+    <div class="row justify-content-center search-bar">
+        <div class="col-md-4 col-sm-6 pb-3">
+            <form class="d-flex">
+                <input class="form-control me-4 mx-4 " style="width: 250px;" type="search" placeholder="Search Product"
+                    aria-label="Search">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="cart-container">
+    <!-- Shopping Cart Section -->
+    <div class="cart-items">
+        <h5 class="fw-bold mb-3">Shopping Cart</h5>
+
+        <!-- Cart Item -->
+        <div class="cart-item">
+            <img src="./Catageory Images/OIP (1).jpg" alt="Product Image">
+            <div class="flex-grow-1">
+                <h6>Product Name</h6>
+            </div>
+            <div class="quantity-control">
+                <button class="btn btn-outline-secondary btn-sm">-</button>
+                <span class="mx-2">1</span>
+                <button class="btn btn-outline-secondary btn-sm">+</button>
+            </div>
+            <button class="btn delete-btn mx-4">Delete</button>
+            <span>$ 44</span>
+        </div>
+
+        <!-- Cart Item -->
+        <div class="cart-item">
+            <img src="./Catageory Images/OIP (2).jpg" alt="Product Image">
+            <div class="flex-grow-1">
+                <h6>Product Name</h6>
+            </div>
+            <div class="quantity-control">
+                <button class="btn btn-outline-secondary btn-sm">-</button>
+                <span class="mx-2">1</span>
+                <button class="btn btn-outline-secondary btn-sm">+</button>
+            </div>
+            <button class="btn delete-btn mx-4">Delete</button>
+            <span>$ 44</span>
+        </div>
+
+        <!-- Cart Item -->
+        <div class="cart-item">
+            <img src="./Catageory Images/persoanl care.jpeg" alt="Product Image">
+            <div class="flex-grow-1">
+                <h6>Product Name</h6>
+            </div>
+            <div class="quantity-control">
+                <button class="btn btn-outline-secondary btn-sm">-</button>
+                <span class="mx-2">1</span>
+                <button class="btn btn-outline-secondary btn-sm">+</button>
+            </div>
+            <button class="btn delete-btn mx-4">Delete</button>
+            <span>$ 44</span>
+        </div>
+
+    </div>
+
+    <!-- Summary Section -->
+    <div class="cart-summary">
+        <h5 class="fw-bold mb-3">Summary</h5>
+        <ul>
+            <li class="d-flex justify-content-between">
+                <span>4 Items</span>
+                <span>$ 176</span>
+            </li>
+            <li class="d-flex justify-content-between">
+                <span>Discount</span>
+                <span>20%</span>
+            </li>
+            <li class="d-flex justify-content-between">
+                <span>Tax</span>
+                <span>$ 10</span>
+            </li>
+            <li class="d-flex justify-content-between">
+                <span>Delivery Charge</span>
+                <span>$ 16</span>
+            </li>
+            <li class="d-flex justify-content-between fw-bold">
+                <span>Total</span>
+                <span>$ 200</span>
+            </li>
+        </ul>
+        <button class="btn checkout-btn mt-3">Checkout</button>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+crossorigin="anonymous"></script>
+
+</html>

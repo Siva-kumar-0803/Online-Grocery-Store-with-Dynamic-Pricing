@@ -321,3 +321,69 @@ div>.custome-button:hover {
     margin-top: 30px;
 
 }
+
+/* account end */
+
+/* whishlist start */
+.wishlist-container {
+  border: 2px solid grey;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.wishlist-item {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+}
+
+.wishlist-item:last-child {
+  border-bottom: none;
+}
+
+.product-image {
+  max-width: 100px;
+  height: auto;
+}
+
+.add-cart-btn {
+  background-color: #FF8C00;
+  color: white;
+  border: none;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+}
+.add-cart-btn:hover, .delete-btn:hover {
+  background-color: #E57C00;
+}
+
+.delete-btn:hover {
+  background-color: red;
+}
+.delete-btn {
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+}
+
+.delete-btn i {
+  margin-right: 5px;
+}
+
+
+/* whishlist end */
+
+/* shopping cart and checkout start */
+
+
+/* shopping cart and checkout end */
