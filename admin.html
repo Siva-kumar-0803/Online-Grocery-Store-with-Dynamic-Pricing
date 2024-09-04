@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+<body class="adminbody">
+
+    <div class="sidebar">
+        <h4 class="text-center">Admin Dashboard</h4>
+        <a href="#">Dashboard</a>
+        <a href="#">Product Management</a>
+        <a href="#">Order Management</a>
+        <a href="#">Customer Management</a>
+        <a href="#">Report</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <h5>Welcome, Admin</h5>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Dashboard Overview</div>
+            <div class="card-body">
+                <table class="table metric-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Sales</td>
+                            <td>$25,000</td>
+                        </tr>
+                        <tr>
+                            <td>Total Orders</td>
+                            <td>1,200</td>
+                        </tr>
+                        <tr>
+                            <td>Total Products</td>
+                            <td>300</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Product Management</div>
+            <div class="card-body">
+                <button class="btn btn-primary mb-3">Add New Product</button>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <td>Apple</td>
+                            <td>Fruit</td>
+                            <td>$1.00</td>
+                            <td>100</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning">Edit</button>
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <td>Banana</td>
+                            <td>Fruit</td>
+                            <td>$0.50</td>
+                            <td>200</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning">Edit</button>
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Order Management</div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Order Id</th>
+                            <th>Customer Name</th>
+                            <th>Order Date</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <td>John</td>
+                            <td>2024-08-18</td>
+                            <td>$50.00</td>
+                            <td>Processing</td>
+                            <td><button class="btn btn-sm btn-info">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <td>Wick</td>
+                            <td>2024-08-18</td>
+                            <td>$50.00</td>
+                            <td>Shipped</td>
+                            <td><button class="btn btn-sm btn-info">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Customer Management</div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Customer Id</th>
+                            <th>Customer Name</th>
+                            <th>Email</th>
+                            <th>Total Orders</th>
+                            <th>Total Spend</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <td>John</td>
+                            <td>john@example.com</td>
+                            <td>15</td>
+                            <td>$1,000.00</td>
+                            <td><button class="btn btn-sm btn-info">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <td>Wick</td>
+                            <td>wick@example.com</td>
+                            <td>20</td>
+                            <td>$1,000.00</td>
+                            <td><button class="btn btn-sm btn-info">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Report</div>
+            <div class="card-body">
+                <button class="btn btn-primary">Generate Sales Report</button>
+                <button class="btn btn-primary">Generate Customer Report</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

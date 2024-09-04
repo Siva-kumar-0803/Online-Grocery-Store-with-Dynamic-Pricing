@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .customerform-container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            background-color: #f0f4f5;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="customerform-container">
+        <h4>Customer Details</h4>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="customerId">Customer ID</label>
+                    <input type="text" class="form-control" id="customerId" placeholder="Enter Customer ID">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter Name">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="totalOrders">Total Orders</label>
+                    <input type="number" class="form-control" id="totalOrders" placeholder="Enter Total Orders">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="totalSpend">Total Spend</label>
+                    <input type="text" class="form-control" id="totalSpend" placeholder="Enter Total Spend">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="mobileNumber">Mobile Number</label>
+                    <input type="text" class="form-control" id="mobileNumber" placeholder="Enter Mobile Number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea class="form-control" id="address" rows="4" placeholder="Enter Address"></textarea>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
