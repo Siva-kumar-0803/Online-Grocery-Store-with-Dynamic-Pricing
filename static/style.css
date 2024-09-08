@@ -45,9 +45,6 @@
     padding: 1rem;
 }
 
-.input_fields input:hover {
-    transform: scale(1.02);
-  }
 
 .input_fields button {
     height: 2.5rem; 
@@ -77,9 +74,6 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-group:hover,btn {
-  transform: scale(1.05);
-}
 
 /* Login page end */
 
@@ -205,8 +199,11 @@ div>.custom-button:hover {
 
 /* single_product start */
 .product-image {
-  max-width: 100%;
-  border-radius: 8px;
+    width: 100%;          /* Ensures the image uses the full width of its container */
+    height: auto;         /* Maintains the aspect ratio */
+    object-fit: cover;    /* Scales the image to cover the space without distortion */
+    border-radius: 5px;   /* Optional: Adds rounded corners */
+    max-height: 600px;    /* Optional: Limits the max height to prevent overflow */
 }
 .product-info {
   border: 1px solid #e9ecef;
@@ -280,7 +277,6 @@ div>.custome-button:hover {
     font-weight: bold;
     color: #333; /* Dark text for contrast */
 }
-
 .edit-link {
     color: black;
     text-decoration: none;
@@ -434,11 +430,12 @@ div>.custome-button:hover {
   align-items: center;
   justify-content: center;
 }
-.checkout-btn {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  width: 100%;
+.custom-checkout-btn {
+    background-color: #28a745;
+    color: white; /* Optional: Change text color for better visibility */
+    border: none; /* Optional: Remove border if needed */
+    border: none;
+    width: 100%;
 }
 
 /* shopping cart and checkout end */
@@ -490,49 +487,47 @@ div>.custome-button:hover {
 /* payment start */
 
 .payment-container {
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-}
-.payment-container h5 {
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-.form-check-input {
-  margin-right: 10px;
-}
-.payment-option {
-  margin-bottom: 15px;
-  padding-left: 25px;
-}
-.card-details input,
-.card-details select {
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
-.custom-orderbtn {
-  background-color: orange;
-  border: none;
-  width: 100%;
-  margin-top: 15px;
-}
-
-.custom-orderbtn:hover {
-  background-color: orange;
-}
-.captcha-section {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-.sub-options {
-  display: none;
-  margin-top: 10px;
-}
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .payment-container h5 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .form-check-input {
+            margin-right: 10px;
+        }
+        .payment-option {
+            margin-bottom: 15px;
+            padding-left: 25px;
+        }
+        .card-details input,
+        .card-details select {
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .custom-order-btn {
+            background-color: #FF8C00 !important; /* Ensures background color is applied */
+            color: white; /* Optional: Set text color for contrast */
+            width: 50%;
+            margin-top: 15px;
+            margin-left: 23%;
+            border: none; /* Removes any border if present */
+        }
+        .captcha-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .sub-options {
+            display: none;
+            margin-top: 10px;
+        }
 /* payment end */
 
 /* admin start */
@@ -573,6 +568,7 @@ div>.custome-button:hover {
   text-align: right;
 }
 .header h5 {
+  text-align:center;
   margin: 0;
 }
 .card {
@@ -670,3 +666,25 @@ table th {
 }
 
 /* oreder detail end */
+
+/* admin add product start */
+
+ .form-container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 900px;
+            background-color: #f0f4f5;
+            border-radius: 5px;
+        }
+/* admin add product end */
+
+/* admin customer details start */
+
+ .customerform-container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            background-color: #f0f4f5;
+            border-radius: 5px;
+        }
+/* admin customer details end */
