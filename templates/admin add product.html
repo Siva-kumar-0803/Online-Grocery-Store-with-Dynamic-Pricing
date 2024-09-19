@@ -1,82 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Product Form</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./static/style.css" rel="stylesheet">
-    <style>
+{% extends "base.html" %}
+{%block title %} Admin Add Product {% endblock %}
+{% block content %}
 
-    </style>
-</head>
-<body>
     <div class="form-container custom-add">
         <h4>Add New Product</h4>
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="productId">Product ID</label>
-                    <input type="text" class="form-control" id="productId" placeholder="Enter Product ID">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-container custom-add">
+                <div class="form-row ">
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="category">Category Id</label>
+                        <input type="text" class="form-control" name="categoryId" id="categoryId" placeholder="Enter Category Id" required>
+                    </div>
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="categoryName">Category Name</label>
+                        <input type="text" class="form-control" name="categoryName" id="categoryName" placeholder="Enter Category Name" required>
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="productName">Name</label>
-                    <input type="text" class="form-control" id="productName" placeholder="Enter Product Name">
+        
+                <div class="form-row ">
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="categoryDescription">Category Description</label>
+                        <textarea class="form-control" name="categoryDescription" id="categoryDescription" rows="3" placeholder="Enter Category Description" required></textarea>
+                    </div>
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="productId">Product Id</label>
+                        <input type="text" class="form-control" name="productId" id="productId" placeholder="Enter Product Id" required>
+                    </div>
                 </div>
+        
+                <div class="form-row ">
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="productName">Name</label>
+                        <input type="text" class="form-control" name="productName" id="productName" placeholder="Enter Product Name" required>
+                    </div>
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter Product Description" required></textarea>
+                    </div>
+                </div>
+        
+                <div class="form-row ">
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="brandName">Brand Name</label>
+                        <input type="text" class="form-control" name="brandName" id="brandName" placeholder="Enter Brand Name" required>
+                    </div>
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="price">Price</label>
+                        <input type="text" class="form-control" name="price" id="price" placeholder="Enter Price" required>
+                    </div>
+                </div>
+        
+                <div class="form-row ">
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="expiryDate">Expiry Date</label>
+                        <input type="date" class="form-control" name="expiryDate" id="expiryDate" required>
+                    </div>
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="weightquantity">Weight / Quantity</label>
+                        <input type="text" class="form-control" name="weightquantity" id="weightquantity" placeholder="Enter Weight/Quantity" required>
+                    </div>
+                </div>
+        
+                <div class="form-row ">
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="sku">Stock Keeping Unit</label>
+                        <input type="text" class="form-control" name="sku" id="sku" placeholder="Enter SKU" required>
+                    </div>
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="rating">Rating & Reviews</label>
+                        <input type="text" class="form-control" name="rating" id="rating" placeholder="Enter Rating & Reviews" required>
+                    </div>
+                </div>
+        
+                <div class="form-group  mt-3">
+                    <label for="nutritionalInfo">Nutritional Information</label>
+                    <textarea class="form-control" name="nutritionalInfo" id="nutritionalInfo" rows="3" placeholder="Enter Nutritional Information" required></textarea>
+                </div>
+        
+                <div class="form-row">
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="countryOfOrigin">Country Of Origin</label>
+                        <input type="text" class="form-control" name="country" id="countryOfOrigin" placeholder="Enter Country Of Origin" required>
+                    </div>
+                    <div class="form-group col-md-6  mt-3">
+                        <label for="productImage">Image</label>
+                        <input type="file" class="form-control-file" name="image" id="productImage" required>
+                    </div>
+                </div>
+        
+                <button type="submit" class="btn btn-primary">Add Product</button>
             </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" rows="3" placeholder="Enter Product Description"></textarea>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="brandName">Brand Name</label>
-                    <input type="text" class="form-control" id="brandName" placeholder="Enter Brand Name">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="price">Price</label>
-                    <input type="text" class="form-control" id="price" placeholder="Enter Price">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="expiryDate">Expiry Date</label>
-                    <input type="date" class="form-control" id="expiryDate">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="quantity">Weight / Quantity</label>
-                    <input type="text" class="form-control" id="quantity" placeholder="Enter Weight/Quantity">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="sku">Stock Keeping Unit</label>
-                    <input type="text" class="form-control" id="sku" placeholder="Enter SKU">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="rating">Rating & Reviews</label>
-                    <input type="text" class="form-control" id="rating" placeholder="Enter Rating & Reviews">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="nutritionalInfo">Nutritional Information</label>
-                <textarea class="form-control" id="nutritionalInfo" rows="3" placeholder="Enter Nutritional Information"></textarea>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="countryOfOrigin">Country Of Origin</label>
-                    <input type="text" class="form-control" id="countryOfOrigin" placeholder="Enter Country Of Origin">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="productImage">Image</label>
-                    <input type="file" class="form-control-file" id="productImage">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Add Product</button>
         </form>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock %}
