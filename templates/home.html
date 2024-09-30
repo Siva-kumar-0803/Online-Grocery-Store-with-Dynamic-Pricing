@@ -35,100 +35,20 @@
   </div>
 
 <h2 class="mx-5 mt-4 p-3 fw-bolder ">Explore Catageories</h2>
-            <div class="row mx-5">
-                <!-- Card 1 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/Catageory Images/friuts and vegitables.jpeg" height="190" class="card-img-top" alt="Image 1">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Friuts & Vegitables</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/Catageory Images/top-view-dairy-products-wooden-background.jpg" height="190" class="card-img-top" alt="Image 2">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Dairy & Bakery</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/Catageory Images/meat and seafood.jpeg" height="190" class="card-img-top" alt="Image 3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Meat & Seafoods</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/Catageory Images/groceries.jpg" height="190" class="card-img-top" alt="Image 4">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Groceries</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 5 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/Catageory Images/snakes.jpeg" height="190" class="card-img-top" alt="Image 5">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Snaks</h5>
-                        </div>
-                    </div>
-                </div>
+<div class="row mx-5">
+    {% for category in categories %}
+    <!-- Card 1 -->
+    <div class="col custom-col mb-4">
+        <div class="card h-100">
+            <img src="data:image/jpeg;base64,{{ category.image }}" height="190" class="card-img-top" alt="{{ category.name }}">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{category.name}}</h5>
             </div>
-            <div class="row mx-5">
-                <!-- Card 1 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/Catageory Images/frozen food.jpeg" height="190" class="card-img-top" alt="Image 1">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Frozen Foods</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/Catageory Images/persoanl care.jpeg" height="190" class="card-img-top" alt="Image 2">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Personal Care</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/Catageory Images/household essential.jpeg" height="190" class="card-img-top" alt="Image 3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Household Essential</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/Catageory Images/baby care.jpeg" height="190" class="card-img-top" alt="Image 4">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Baby care</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 5 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/Catageory Images/cool drinks.jpeg" height="190" class="card-img-top" alt="Image 5">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Cool Drinks</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 <h2 class="mx-5 mt-4 p-3 fw-bolder ">Bestsellers</h2>
             <div class="row mx-5">
                 <!-- Card 1 -->
@@ -180,52 +100,22 @@
 
             <h2 class="mx-5 mt-4 p-3 fw-bolder ">Offers</h2>
             <div class="row mx-5">
+                {% for offer in offers %}
+
                 <!-- Card 1 -->
                 <div class="col custom-col mb-4">
                     <div class="card h-100">
-                        <img src="./static/offers/th (1).jpeg"  height="190" class="card-img-top" alt="Image 1">
+                        <img src="data:image/jpeg;base64,{{ offer.image }}" height="190" class="card-img-top" alt="{{ offer.name }}">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Weekly Offer</h5>
+                            <h5 class="card-title">{{offer.name}}</h5>
                         </div>
                     </div>
                 </div>
-                <!-- Card 2 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/offers/OIP (7).jpeg" height="190" class="card-img-top" alt="Image 2">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Today Offer</h5>
-                        </div>
-                    </div>
+                {% endfor%}
                 </div>
-                <!-- Card 3 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/offers/OIP (8).jpeg" height="190" class="card-img-top" alt="Image 3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Combo offer</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/offers/th (2).jpeg" height="190" class="card-img-top" alt="Image 4">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Special Offer</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 5 -->
-                <div class="col custom-col mb-4">
-                    <div class="card h-100">
-                        <img src="./static/offers/vector-biggest-sale-offers-and-discount-banner-template-for-promotion.jpg" height="190" class="card-img-top" alt="Image 5">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Flat Offer</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                
+
+                
             {% include "footer.html" %}
                 <!-- More cards can be added here -->
    {% endblock %}             

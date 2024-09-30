@@ -1,9 +1,13 @@
-from flask import Flask,render_template,redirect,request
+from flask import Flask,render_template,redirect,request,send_file
 from flask_mysqldb import MySQL
 from flask_bcrypt import Bcrypt
 from datetime import datetime
+import io
+import MySQLdb
+import base64
+from PIL import Image
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='static')
 mysql = MySQL(app)
 bcrypt = Bcrypt(app)
 
@@ -13,13 +17,108 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '1234'
 app.config['MYSQL_DB'] = 'grocery_store'
 
+
+# mysql = MySQLdb.connect(
+#     host=app.config['127.0.0.1'],
+#     user=app.config['root'],
+#     password=app.config['1234'],
+#     db=app.config['grocery_store']
+# )
+
+
+
+
+def category():
+    cur = mysql.connection.cursor()
+
+    try:
+        cur.execute("SELECT category_id, category_name, category_image FROM category")
+        categories = cur.fetchall()
+
+        # Debugging: Print out what categories contains
+
+        category_list = []
+
+        if categories:
+            for category in categories:
+                # Print each category for debugging
+
+                # Ensure category has at least 3 elements
+                if len(category) >= 3:
+                    category_id = category[0]
+                    category_name = category[1]
+
+                    # Check if category_image is not None
+                    if category[2] is not None:
+                        category_image = base64.b64encode(category[2]).decode('utf-8')
+                    else:
+                        category_image = ''  # Handle missing image
+
+                    category_list.append({
+                        'id': category_id,
+                        'name': category_name,
+                        'image': category_image
+                    })
+                else:
+                    return "Unexpected category structure: {category}"
+        else:
+            return "No categories found in the database."
+
+    except Exception as e:
+        return "Error fetching data: {e}"
+    finally:
+        return category_list
+        cur.close()
+
+def offers():
+    cur = mysql.connection.cursor()
+
+    try:
+        cur.execute("SELECT offer_id, off_name, image FROM offers")
+        offers = cur.fetchall()
+
+        # Debugging: Print out what categories contains
+
+        offers_list = []
+
+        if offers:
+            for offer in offers:
+                # Print each category for debugging
+
+                # Ensure category has at least 3 elements
+                if len(offer) >= 3:
+                    offer_id = offer[0]
+                    offer_name = offer[1]
+
+                    # Check if category_image is not None
+                    if offer[2] is not None:
+                        offer_image = base64.b64encode(offer[2]).decode('utf-8')
+                    else:
+                        offer_image = ''  # Handle missing image
+
+                    offers_list.append({
+                        'id': offer_id,
+                        'name': offer_name,
+                        'image': offer_image
+                    })
+                else:
+                    return "Unexpected category structure: {offer}"
+        else:
+            return "No categories found in the database."
+
+    except Exception as e:
+        return "Error fetching data: {e}"
+    finally:
+        return offers_list
+        cur.close()
+
+
 @app.route('/signup',methods=["GET","POST"])
 def signup():
     if request.method == "POST" and "username" in request.form and "email" in request.form and "password" in request.form :
         name = request.form["username"]
         email = request.form["email"]
         password = request.form["password"]
-
         hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
         cur = mysql.connection.cursor()
 
@@ -54,13 +153,61 @@ def login():
                 return "Incorrect password"
         else:
             return "Email does not exist"
-
         cur.close()
     return render_template('login.html')
 
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    category_list = category()
+    offers_list = offers()
+
+    return render_template('home.html', categories=category_list, offers = offers_list)
+
+
+@app.route('/home/offer')
+def offer():
+    cur = mysql.connection.cursor()
+
+    try:
+        cur.execute("SELECT offer_id, off_name, image FROM offers")
+        offers = cur.fetchall()
+
+        # Debugging: Print out what categories contains
+
+        offers_list = []
+
+        if offers:
+            for offer in offers:
+                # Print each category for debugging
+
+                # Ensure category has at least 3 elements
+                if len(offer) >= 3:
+                    offer_id = offer[0]
+                    offer_name = offer[1]
+
+                    # Check if category_image is not None
+                    if offer[2] is not None:
+                        offer_image = base64.b64encode(offer[2]).decode('utf-8')
+                    else:
+                        offer_image = ''  # Handle missing image
+
+                    offers_list.append({
+                        'id': offer_id,
+                        'name': offer_name,
+                        'image': offer_image
+                    })
+                else:
+                    print(f"Unexpected category structure: {offer}")
+        else:
+            print("No categories found in the database.")
+
+    except Exception as e:
+        print(f"Error fetching data: {e}")
+    finally:
+        cur.close()
+    return render_template('home.html',offers=offers_list)
+
+
 
 @app.route('/blog')
 def blog():
@@ -108,6 +255,32 @@ def admin_customer_details():
 def admin_order_details():
     return render_template('admin order details.html')
 
+
+def date_convertor(var):
+    if var:
+            try:
+                # Parse the expiry date to ensure it's valid
+                date = datetime.strptime(var, "%Y-%m-%d").date()
+                return date
+            except ValueError:
+                # If the date is invalid, handle it here (e.g., set to None or return an error)
+                date = None
+    else:
+        # Set expirydate to None if it's empty
+        date = None
+
+def image_checker(var):
+    if var:
+        image_data = var.read()
+        return image_data     
+    else:
+        # handle the case where no file was sent
+        return None
+
+
+
+
+
 @app.route('/admin add product', methods=["GET", "POST"])
 def admin_add_product():
     category = 0
@@ -141,34 +314,21 @@ def admin_add_product():
         if stock:
              availability = "available"
 
-        # Retrieve the uploaded file
-        if "image" in request.files:
-            image_file = request.files["image"]
-            image_data = image_file.read()  # This is already binary data
-        else:
-            # handle the case where no file was sent
-            image_data = None
+        product_image = request.files["image"]
+        image_data = image_checker(product_image)
+        category_image = request.files["categoryImage"]
+        image_data1 = image_checker(category_image)
 
 
-        if expirydate:
-            try:
-                # Parse the expiry date to ensure it's valid
-                expirydate = datetime.strptime(expirydate, "%Y-%m-%d").date()
-            except ValueError:
-                # If the date is invalid, handle it here (e.g., set to None or return an error)
-                expirydate = None
-        else:
-            # Set expirydate to None if it's empty
-            expirydate = None
-
+        expirydate = date_convertor(expirydate)
 
         # Insert the data into the database
         cur = mysql.connection.cursor()
         cur.execute('SELECT category_id FROM category WHERE category_id = %s', [categoryid])
-        db_category_data = cur.fetchall()
+        db_category_data =  cur.fetchone()
 
-        if categoryid not in db_category_data:
-            cur.execute('INSERT INTO category (category_id,category_name,description) VALUES(%s,%s,%s)',(categoryid,category_name,category_description))
+        if not  db_category_data:
+            cur.execute('INSERT INTO category (category_id,category_name,description,category_image) VALUES(%s,%s,%s,%s)',(categoryid,category_name,category_description,image_data1))
         
         if p_id and categoryid: 
             cur.execute('INSERT INTO products (product_id, product_name, price, brand_name, stock_keep_unit, expiry_date, weight_quantity, availability, ratings, neturitional_info, country, picture, category_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
@@ -178,6 +338,29 @@ def admin_add_product():
 
     return render_template('admin add product.html')
 
+
+@app.route('/admin add offers',methods=["GET","POST"])
+def add_offer():
+    if request.method == "POST":
+        offer_id = request.form['offer_id']
+        offer_name = request.form['offer_title']  
+        offer_description = request.form['offer_description']
+        start_date = date_convertor(request.form['start_date'])
+        end_date = date_convertor( request.form['end_date'])
+        discount_percentage = request.form['discount_percentage']
+        off_img = request.files['offer_image']
+        offer_image = image_checker(off_img)
+
+        cur = mysql.connection.cursor()
+        cur.execute('INSERT INTO offers (offer_id,off_name,off_desc,start_date,end_date,discount,image) VALUES(%s,%s,%s,%s,%s,%s,%s)',(offer_id,offer_name,offer_description,start_date,end_date,discount_percentage,offer_image))
+        mysql.connection.commit()
+        cur.close()
+
+        
+    
+        
+
+    return render_template('admin add offers.html')
 
 if (__name__) == "__main__":
     app.run(debug=True)
